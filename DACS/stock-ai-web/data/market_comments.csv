@@ -1,0 +1,24 @@
+date,symbol,comment,sentiment
+2026-04-25,AAPL,"Kỳ vọng tích cực trước thềm báo cáo doanh thu.",0.7
+2026-04-26,AAPL,"Lượng đơn đặt hàng iPhone mới tăng ổn định.",0.6
+2026-04-27,AAPL,"Phân tích kỹ thuật ủng hộ xu hướng tăng.",0.5
+2026-04-28,AAPL,"Chốt lời ngắn hạn từ một số quỹ đầu tư.",-0.2
+2026-04-29,AAPL,"Lo ngại về lãi suất ảnh hưởng đến nhóm công nghệ.",-0.4
+2026-04-30,AAPL,"Apple công bố chương trình mua lại cổ phiếu.",0.8
+2026-05-01,AAPL,"Thị trường phản ứng tốt với thông tin mua lại cổ phiếu.",0.75
+2026-05-02,AAPL,"Doanh thu mảng dịch vụ đạt kỷ lục mới.",0.9
+2026-05-03,AAPL,"Nhà đầu tư lạc quan về triển vọng AI của Apple.",0.85
+2026-05-04,AAPL,"Áp lực điều chỉnh chung của chỉ số Nasdaq.",-0.3
+2026-05-05,AAPL,"Lực cầu bắt đáy xuất hiện mạnh mẽ.",0.5
+2026-05-06,AAPL,"Đột phá công nghệ chip M4 gây ấn tượng mạnh.",0.95
+2026-04-25,VNINDEX,"Dòng tiền bắt đầu quay trở lại nhóm Bluechips.",0.6
+2026-04-30,VNINDEX,"VN-Index duy trì đà hồi phục ổn định.",0.55
+2026-05-03,VNINDEX,"Thanh khoản thị trường bùng nổ mạnh mẽ.",0.8
+2026-05-06,VNINDEX,"Thị trường tiến sát ngưỡng kháng cự quan trọng.",0.7
+2026-04-25,VNM,"Vinamilk công bố chiến lược mở rộng thị trường quốc tế.",0.7
+2026-05-01,VNM,"Lợi nhuận quý 1 của VNM vượt kế hoạch đề ra.",0.8
+2026-05-06,VNM,"Khối ngoại mua ròng mạnh cổ phiếu Vinamilk.",0.9
+2026-04-25,FPT,"FPT ký kết hợp đồng công nghệ lớn tại Nhật Bản.",0.85
+2026-04-30,FPT,"Cổ phiếu công nghệ hưởng lợi từ xu hướng AI toàn cầu.",0.75
+2026-05-03,FPT,"FPT báo cáo tăng trưởng doanh thu hai chữ số.",0.9
+2026-05-06,FPT,"Đà tăng của FPT dường như chưa có dấu hiệu dừng lại.",0.8

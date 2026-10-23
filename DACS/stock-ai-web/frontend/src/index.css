@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0b0f19;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #b0bec5;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: #00f2fe;
+}
+
+/* Container & Typography */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  color: #90a4ae;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+/* Stock Grid */
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Stock Card */
+.stock-card {
+  padding: 1.8rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.stock-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.12);
+  border-color: rgba(0, 242, 254, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.symbol-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.trend-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trend-badge.up {
+  background: rgba(0, 230, 118, 0.15);
+  color: #00e676;
+}
+
+.trend-badge.down {
+  background: rgba(255, 82, 82, 0.15);
+  color: #ff5252;
+}
+
+.price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fff 0%, #b0bec5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-link {
+  color: #4facfe;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+
+.card-link:hover {
+  color: #00f2fe;
+}
+
+/* Chart */
+.chart-container {
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 100px;
+  background: rgba(0, 242, 254, 0.2);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+/* Analysis Box */
+.prediction-panel {
+  padding: 2.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(0,242,254,0.05) 100%);
+  border-left: 4px solid #00f2fe;
+}
+
+.ai-icon {
+  font-size: 2.5rem;
+  background: rgba(0, 242, 254, 0.1);
+  color: #00f2fe;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.prediction-info h3 {
+  color: #00f2fe;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.prediction-info p {
+  color: #b0bec5;
+  line-height: 1.6;
+}
+
+.prediction-result {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.prediction-result.up { background: rgba(0, 230, 118, 0.1); color: #00e676; }
+.prediction-result.down { background: rgba(255, 82, 82, 0.1); color: #ff5252; }
+
+/* Login Form */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 3rem;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #fff, #b0bec5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #90a4ae;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #00f2fe;
+  box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.15);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(0, 242, 254, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 242, 254, 0.3);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
