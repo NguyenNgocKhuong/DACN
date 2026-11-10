@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 import Education from './pages/Education';
+import BacktestDashboard from './pages/BacktestDashboard';
 import DisclaimerModal from './components/DisclaimerModal';
 import Footer from './components/Footer';
 
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/stock/:symbol" element={<StockDetail />} />
+            <Route path="/backtest" element={<BacktestDashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<AdminDashboard />} />

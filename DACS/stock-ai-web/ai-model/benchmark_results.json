@@ -1,0 +1,112 @@
+{
+    "benchmarks": {
+        "Random Forest": {
+            "accuracy": 57.99,
+            "precision": 50.0,
+            "recall": 32.23,
+            "f1_score": 39.2,
+            "roc_auc": 0.5763,
+            "rmse": 6104.17,
+            "mae": 2352.8,
+            "confusion_matrix": {
+                "TN": 128,
+                "FP": 39,
+                "FN": 82,
+                "TP": 39
+            }
+        },
+        "LSTM": {
+            "accuracy": 60.07,
+            "precision": 52.14,
+            "recall": 60.33,
+            "f1_score": 55.94,
+            "roc_auc": 0.6082,
+            "rmse": 4552.52,
+            "mae": 3191.02,
+            "confusion_matrix": {
+                "TN": 100,
+                "FP": 67,
+                "FN": 48,
+                "TP": 73
+            }
+        },
+        "GRU": {
+            "accuracy": 60.07,
+            "precision": 52.63,
+            "recall": 49.59,
+            "f1_score": 51.06,
+            "roc_auc": 0.6189,
+            "rmse": 5298.89,
+            "mae": 3547.24,
+            "confusion_matrix": {
+                "TN": 113,
+                "FP": 54,
+                "FN": 61,
+                "TP": 60
+            }
+        },
+        "Transformer (Ours)": {
+            "accuracy": 59.72,
+            "precision": 56.1,
+            "recall": 19.01,
+            "f1_score": 28.4,
+            "roc_auc": 0.5864,
+            "rmse": 9831.94,
+            "mae": 5409.51,
+            "confusion_matrix": {
+                "TN": 149,
+                "FP": 18,
+                "FN": 98,
+                "TP": 23
+            }
+        }
+    },
+    "ablation_study": {
+        "1. OHLCV Only (5 features)": {
+            "accuracy": 60.07,
+            "precision": 52.14,
+            "recall": 60.33,
+            "f1_score": 55.94,
+            "roc_auc": 0.5964,
+            "rmse": 10914.33,
+            "mae": 5607.45,
+            "confusion_matrix": {
+                "TN": 100,
+                "FP": 67,
+                "FN": 48,
+                "TP": 73
+            }
+        },
+        "2. OHLCV + Technical Indicators (11 features)": {
+            "accuracy": 59.03,
+            "precision": 66.67,
+            "recall": 4.96,
+            "f1_score": 9.23,
+            "roc_auc": 0.6083,
+            "rmse": 7536.29,
+            "mae": 5345.26,
+            "confusion_matrix": {
+                "TN": 164,
+                "FP": 3,
+                "FN": 115,
+                "TP": 6
+            }
+        },
+        "3. Full Multimodal (12 features)": {
+            "accuracy": 59.72,
+            "precision": 56.1,
+            "recall": 19.01,
+            "f1_score": 28.4,
+            "roc_auc": 0.5864,
+            "rmse": 9831.94,
+            "mae": 5409.51,
+            "confusion_matrix": {
+                "TN": 149,
+                "FP": 18,
+                "FN": 98,
+                "TP": 23
+            }
+        }
+    },
+    "test_samples": 288
+}

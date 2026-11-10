@@ -257,3 +257,24 @@ class BacktestExperiment(Base):
     total_trades = Column(Integer, default=0) # Tổng số lệnh giao dịch
     
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "strategy_name": self.strategy_name,
+            "model_version": self.model_version,
+            "symbol": self.symbol,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "period": f"{self.start_date} -> {self.end_date}",
+            "initial_capital": self.initial_capital,
+            "final_capital": self.final_capital,
+            "total_return_pct": self.total_return_pct,
+            "benchmark_return_pct": self.benchmark_return_pct,
+            "sharpe_ratio": self.sharpe_ratio,
+            "max_drawdown_pct": self.max_drawdown_pct,
+            "win_rate_pct": self.win_rate_pct,
+            "profit_factor": self.profit_factor,
+            "total_trades": self.total_trades,
+            "created_at": self.created_at.isoformat() if self.created_at else None
+        }

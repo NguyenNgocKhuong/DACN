@@ -43,6 +43,7 @@ const Navbar = () => {
       <Link to="/" className="logo-text">BDTAI</Link>
       <ul className="nav-links" style={{ alignItems: 'center' }}>
         <li><Link to="/" className="nav-link">📊 Phân Tích & Dự Đoán AI</Link></li>
+        <li><Link to="/backtest" className="nav-link" style={{ color: '#00f2fe', fontWeight: 600 }}>📈 Kiểm Thử Chiến Lược</Link></li>
         <li><Link to="/education" className="nav-link">🧠 Học đầu tư</Link></li>
         <li><Link to="/about" className="nav-link">📄 Giới thiệu</Link></li>
         {username === 'admin' && (

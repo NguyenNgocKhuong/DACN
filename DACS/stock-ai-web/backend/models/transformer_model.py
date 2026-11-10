@@ -2,40 +2,88 @@ import torch
 import torch.nn as nn
 import math
 
-class TimeSeriesTransformer(nn.Module):
-    def __init__(self, input_dim, d_model, nhead, num_layers, dim_feedforward, dropout=0.1):
-        super(TimeSeriesTransformer, self).__init__()
-        self.model_type = 'Transformer'
-        self.pos_encoder = PositionalEncoding(d_model, dropout)
-        
-        self.input_projection = nn.Linear(input_dim, d_model)
-        
-        encoder_layers = nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout, batch_first=True)
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layers, num_layers)
-        
-        self.decoder = nn.Linear(d_model, 1)
-
-    def forward(self, src):
-        src = self.input_projection(src)
-        src = self.pos_encoder(src)
-        output = self.transformer_encoder(src)
-        last_step_output = output[:, -1, :]
-        output = self.decoder(last_step_output)
-        return output
-
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model, dropout=0.1, max_len=5000):
+    def __init__(self, d_model: int, dropout: float = 0.1, max_len: int = 5000):
         super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(p=dropout)
 
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0)
         self.register_buffer('pe', pe)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = x + self.pe[:, :x.size(1), :]
         return self.dropout(x)
+
+
+class MultimodalTimeSeriesTransformer(nn.Module):
+    """
+    Kiến trúc Transformer Đa Biến (Dual-Head Architecture)
+    """
+    def __init__(
+        self,
+        input_dim: int = 12,
+        d_model: int = 64,
+        nhead: int = 4,
+        num_layers: int = 3,
+        dim_feedforward: int = 128,
+        dropout: float = 0.2
+    ):
+        super(MultimodalTimeSeriesTransformer, self).__init__()
+        self.model_type = 'MultimodalTransformer'
+        self.input_dim = input_dim
+        self.d_model = d_model
+        
+        self.input_projection = nn.Sequential(
+            nn.Linear(input_dim, d_model),
+            nn.LayerNorm(d_model),
+            nn.ReLU(),
+            nn.Dropout(dropout)
+        )
+        
+        self.pos_encoder = PositionalEncoding(d_model, dropout)
+        
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=d_model,
+            nhead=nhead,
+            dim_feedforward=dim_feedforward,
+            dropout=dropout,
+            batch_first=True,
+            activation='gelu'
+        )
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+        self.encoder_norm = nn.LayerNorm(d_model)
+        
+        # Dual-Head Output
+        self.trend_head = nn.Sequential(
+            nn.Linear(d_model, 32),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(32, 1)
+        )
+        
+        self.price_head = nn.Sequential(
+            nn.Linear(d_model, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1)
+        )
+
+    def forward(self, src: torch.Tensor):
+        projected = self.input_projection(src)
+        encoded = self.pos_encoder(projected)
+        transformer_out = self.transformer_encoder(encoded)
+        normalized_out = self.encoder_norm(transformer_out)
+        
+        last_step = normalized_out[:, -1, :]
+        trend_logit = self.trend_head(last_step)
+        predicted_price = self.price_head(last_step)
+        
+        return trend_logit, predicted_price
+
+# Backward compatibility alias
+TimeSeriesTransformer = MultimodalTimeSeriesTransformer

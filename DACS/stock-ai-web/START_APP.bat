@@ -16,11 +16,12 @@ if exist "%LOCALAPPDATA%\Microsoft\WinGet\Packages\OpenJS.NodeJS.LTS_Microsoft.W
 
 :: 1. Start Backend with fallback logic
 echo [1/2] Dang khoi chay Backend (Port 5001)...
-start "Backend Server" cmd /k "cd backend && (python app.py || py app.py || \"%LOCALAPPDATA%\Programs\Python\Python311\python.exe\" app.py || echo [ERROR] Khong tim thay Python! Vui long kiem tra lai cai dat Python.)"
+set DISABLE_SQLALCHEMY_CEXT=1
+start "Backend Server" cmd /k "set DISABLE_SQLALCHEMY_CEXT=1 && cd backend && (python app.py || py app.py || \"%LOCALAPPDATA%\Programs\Python\Python311\python.exe\" app.py || echo [ERROR] Khong tim thay Python! Vui long kiem tra lai cai dat Python.)"
 
 :: 2. Start Frontend
 echo [2/2] Dang khoi chay Frontend (Port 3000)...
-start "Frontend UI" cmd /k "cd frontend && npm start"
+start "Frontend UI" cmd /k "cd frontend && (npm.cmd start || npm start)"
 
 echo.
 echo Dang cho Frontend khoi dong hoan tat (khoang 10-20 giay)...
